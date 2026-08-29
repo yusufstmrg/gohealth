@@ -1,47 +1,51 @@
 # GoHealth
 **Indonesia's Digital Health Ecosystem** — *One Platform, Every Health Need.*
 
-## Production architecture
-- Next.js App Router on Vercel
+GoHealth is an Indonesia-first digital health platform intended to simplify health access, discovery, navigation and orchestration.
+
+## Stack
+- Next.js 16 / React
+- Vercel
 - Neon PostgreSQL
-- Server-side httpOnly session cookie
-- bcrypt password hashing
-- Server-side API routes with parameterized SQL
-- GoHealth AI via OpenAI API when `OPENAI_API_KEY` is configured, with safe deterministic fallback when it is not
-- Demo provider/service/article/blood data is clearly labelled until official partners are connected
+- Server-side httpOnly sessions + bcrypt
+- Optional OpenAI API for GoHealth AI
+- Playwright smoke testing
 
-## Required Vercel environment variables
-`DATABASE_URL` = Neon connection string for project **GoHealth Production** (`small-sun-43376782`).
-`OPENAI_API_KEY` = provider key for live AI.
-`OPENAI_MODEL` = optional model name; defaults to `gpt-4.1-mini`.
-`NEXT_PUBLIC_APP_URL` = `https://gohealth-platform.vercel.app` until `gohealth.id` is connected.
-`AUTH_SECRET` = reserve for future token hardening.
+## Core workflows
+- Service discovery/search/filter
+- Provider discovery + detail
+- Registration/login/logout
+- Private My Journey + booking requests
+- Family profiles
+- Private personal health notes
+- Blood Access request board with periodic refresh
+- Emergency guidance
+- Health Hub + articles
+- Partner application capture
+- GoHealth AI with emergency guardrails + deterministic fallback
+- Notifications
+- Protected internal operations dashboard
 
-The application auto-initializes its schema on the first database-backed request. A full idempotent schema is also documented in `db/schema.sql` in the local production package.
+## Environment
+`DATABASE_URL` = Neon connection string for GoHealth Production.
+`OPENAI_API_KEY` = server-side OpenAI API key; never use a NEXT_PUBLIC prefix.
+`OPENAI_MODEL` = optional AI model override.
+`NEXT_PUBLIC_APP_URL` = current https://gohealth-platform.vercel.app; later https://gohealth.id.
+`GOHEALTH_ADMIN_EMAIL` = exact email allowed to use /admin.
 
-## Important business boundary
-A production-hosted platform is not automatically a legally-operational clinical service. Doctor, hospital, pharmacy, lab, insurance, emergency and blood workflows require the appropriate partner authorization, credentialing, operational processes, data governance and Indonesian regulatory review before being represented as live regulated services.
+## Production boundary
+A successful Vercel build does not mean regulated healthcare operations are live. Real provider schedules, pharmacy fulfillment, emergency dispatch, blood-bank inventory, insurance transactions, official health-record interoperability and clinical services require verified partners plus Indonesian legal, privacy, security and clinical review. Demo listings are clearly labelled.
 
-## Core user flows
-1. Discover services.
-2. Search providers and view provider detail.
-3. Authenticate and create a booking request.
-4. View private My Journey bookings.
-5. Manage family profiles.
-6. Store private personal health notes.
-7. Create and view blood requests.
-8. Ask GoHealth AI for safe navigation/education.
-9. Read Health Hub content.
-10. Submit a partner application.
-11. Review emergency guidance.
+## Security
+- Private data is always queried by authenticated session user id.
+- Passwords are bcrypt-hashed.
+- Session tokens are random, stored hashed, and delivered via Secure/httpOnly/SameSite cookies.
+- Public directory endpoints never expose password/session data.
+- Parameterized SQL for user input.
+- Production security response headers are enabled.
 
-## Security posture
-- Sensitive user tables are accessed only through user-scoped SQL filters.
-- Passwords are hashed with bcrypt.
-- Session tokens are stored hashed and delivered via httpOnly + Secure + SameSite=Lax cookies.
-- No client receives `password_hash`.
-- Parameterized queries are used for user input.
-- Medical/AI boundaries are enforced in server-side logic.
-
-## Release gates
-Before using real clinical/patient data or marketing a regulated service as live: independent security review, privacy review, legal/compliance review, clinical governance, provider credentialing, monitoring/incident response, backups/restore validation, and real partner integration testing are required.
+## QA commands
+`npm install`
+`npm run typecheck`
+`npm run build`
+`npm run e2e`
