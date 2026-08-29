@@ -1,0 +1,30 @@
+name: GoHealth CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Package production source
+        if: github.ref == 'refs/heads/main' && success()
+        run: |
+          mkdir -p release
+          tar --exclude=.git --exclude=.next --exclude=node_modules -czf release/gohealth-production-source.tgz .
+          cd release && zip -9 gohealth-full-production-package.zip gohealth-production-source.tgz
+      - uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main' && success()
+        with:
+          name: gohealth-full-production-package
+          path: release/gohealth-full-production-package.zip
+          retention-days: 14
