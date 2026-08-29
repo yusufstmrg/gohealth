@@ -1,0 +1,2 @@
+import type {MetadataRoute} from 'next';
+export default function sitemap():MetadataRoute.Sitemap{const base=process.env.NEXT_PUBLIC_APP_URL||'https://gohealth-platform.vercel.app';return['/','/about','/services','/providers','/blood','/emergency','/hub','/assistant','/partners','/corporate','/trust','/contact','/privacy','/terms','/medical-disclaimer'].map(path=>({url:`${base}${path}`,lastModified:new Date(),changeFrequency:'weekly' as const,priority:path==='/'?1:.7}))}
