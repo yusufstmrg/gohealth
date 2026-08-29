@@ -2,8 +2,8 @@
   "name":"gohealth-platform",
   "version":"1.0.0",
   "private":true,
-  "scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint","typecheck":"tsc --noEmit"},
+  "scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint","typecheck":"tsc --noEmit","e2e":"playwright test"},
   "dependencies":{"@neondatabase/serverless":"latest","bcryptjs":"latest","jose":"latest","lucide-react":"latest","next":"latest","react":"latest","react-dom":"latest"},
-  "devDependencies":{"@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","typescript":"latest"},
+  "devDependencies":{"@playwright/test":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","typescript":"latest"},
   "engines":{"node":">=20"}
 }
