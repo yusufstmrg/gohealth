@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 370" role="img" aria-labelledby="title desc">
+<title>GoHealth</title><desc>GoHealth all-in-one health platform logo inspired by the approved brand asset.</desc>
+<defs>
+ <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2458df"/><stop offset="1" stop-color="#081d73"/></linearGradient>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38d94b"/><stop offset="1" stop-color="#087b28"/></linearGradient>
+ <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20d8d0"/><stop offset="1" stop-color="#007e83"/></linearGradient>
+ <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#183b73"/><stop offset="1" stop-color="#07152f"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-opacity=".24"/></filter>
+</defs>
+<g transform="translate(8 8)" filter="url(#shadow)">
+ <rect x="0" y="0" width="160" height="160" rx="36" fill="url(#blue)" stroke="#d8e4ff" stroke-width="5"/>
+ <rect x="190" y="0" width="160" height="160" rx="36" fill="url(#green)" stroke="#d8ffe1" stroke-width="5"/>
+ <rect x="0" y="190" width="160" height="160" rx="36" fill="url(#teal)" stroke="#d9ffff" stroke-width="5"/>
+ <rect x="190" y="190" width="160" height="160" rx="36" fill="url(#navy)" stroke="#d8e4ff" stroke-width="5"/>
+ <rect x="92" y="92" width="166" height="166" rx="38" fill="#f8fbfc" stroke="#e9f0f3" stroke-width="5"/>
+ <rect x="147" y="112" width="56" height="126" rx="8" fill="url(#teal)" stroke="#006d71" stroke-width="5"/>
+ <rect x="112" y="147" width="126" height="56" rx="8" fill="url(#teal)" stroke="#006d71" stroke-width="5"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+ <text x="405" y="170" font-size="104" fill="url(#navy)">Go</text>
+ <text x="550" y="170" font-size="104" fill="url(#teal)">Health</text>
+</g>
+<text x="410" y="225" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#17324a">One Platform, Every Health Need</text>
+</svg>
