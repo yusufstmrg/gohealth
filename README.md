@@ -1,51 +1,47 @@
 # GoHealth
-**Indonesia's Digital Health Ecosystem** — *One Platform, Every Health Need.*
 
-GoHealth is an Indonesia-first digital health platform intended to simplify health access, discovery, navigation and orchestration.
+**GoHealth — One Platform, Every Health Need.**
+
+Indonesia-first digital health access, navigation, discovery and orchestration platform.
+
+## Production
+- Vercel: https://gohealth-platform.vercel.app
+- Repository: https://github.com/yusufstmrg/gohealth
+- Future canonical domain: https://gohealth.id
 
 ## Stack
-- Next.js 16 / React
+- Next.js App Router + React + TypeScript
 - Vercel
 - Neon PostgreSQL
-- Server-side httpOnly sessions + bcrypt
-- Optional OpenAI API for GoHealth AI
-- Playwright smoke testing
+- Server-side sessions + bcrypt
+- Optional server-side OpenAI integration
+- Playwright
+- GitHub Actions
 
-## Core workflows
-- Service discovery/search/filter
-- Provider discovery + detail
-- Registration/login/logout
-- Private My Journey + booking requests
-- Family profiles
-- Private personal health notes
-- Blood Access request board with periodic refresh
-- Emergency guidance
-- Health Hub + articles
-- Partner application capture
-- GoHealth AI with emergency guardrails + deterministic fallback
-- Notifications
-- Protected internal operations dashboard
+## Core modules
+Identity, service discovery, provider network, booking/journey, family health, personal health notes, Blood Access, emergency guidance, Health Hub, partner applications, notifications, admin operations and GoHealth AI navigation.
+
+## Master engineering document
+Read **docs/GOHEALTH_MASTER_ARCHITECTURE_DEVELOPMENT_STANDARD.md** before changing the system. It is the canonical rebuild, security, QA, deployment and development standard.
 
 ## Environment
-`DATABASE_URL` = Neon connection string for GoHealth Production.
-`OPENAI_API_KEY` = server-side OpenAI API key; never use a NEXT_PUBLIC prefix.
-`OPENAI_MODEL` = optional AI model override.
-`NEXT_PUBLIC_APP_URL` = current https://gohealth-platform.vercel.app; later https://gohealth.id.
-`GOHEALTH_ADMIN_EMAIL` = exact email allowed to use /admin.
+- DATABASE_URL
+- OPENAI_API_KEY
+- OPENAI_MODEL (optional)
+- NEXT_PUBLIC_APP_URL
+- GOHEALTH_ADMIN_EMAIL
 
-## Production boundary
-A successful Vercel build does not mean regulated healthcare operations are live. Real provider schedules, pharmacy fulfillment, emergency dispatch, blood-bank inventory, insurance transactions, official health-record interoperability and clinical services require verified partners plus Indonesian legal, privacy, security and clinical review. Demo listings are clearly labelled.
-
-## Security
-- Private data is always queried by authenticated session user id.
-- Passwords are bcrypt-hashed.
-- Session tokens are random, stored hashed, and delivered via Secure/httpOnly/SameSite cookies.
-- Public directory endpoints never expose password/session data.
-- Parameterized SQL for user input.
-- Production security response headers are enabled.
+Never commit secrets or real patient/health data.
 
 ## QA
-`npm install`
-`npm run typecheck`
-`npm run build`
-`npm run e2e`
+```
+npm install
+npm run typecheck
+npm run build
+npm run e2e
+```
+
+## Production boundary
+A successful Vercel deployment does not by itself establish regulatory approval, clinical partner verification, blood inventory verification, emergency dispatch capability, insurance processing, or official interoperability. Those capabilities require verified partners and Indonesian legal, privacy, security and clinical governance.
+
+Demo data is explicitly labelled and must never be presented as real provider availability or clinical inventory.
